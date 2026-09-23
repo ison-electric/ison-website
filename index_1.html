@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="ISON Electric: licensed residential, commercial and 24/7 emergency electricians serving Toronto, Kitchener, Waterloo and Cambridge.">
+<title>ISON Electric</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html{scroll-behavior:smooth}img{max-width:100%}[hidden]{display:none!important}
+:root{
+  --ground:#F4F5F1;
+  --surface:#FFFFFF;
+  --ink:#15202A;
+  --ink-2:#4A5763;
+  --line:#D9DDD6;
+  --panel:#1B2833;
+  --panel-ink:#EEF1EC;
+  --panel-muted:#9DAAB4;
+  --volt:#FFC21A;
+  --volt-ink:#1B1600;
+  --copper:#A9531F;
+  --alert:#C8321E;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0F171E;--surface:#16212A;--ink:#EAEEE9;--ink-2:#A7B3BC;--line:#2A3844;
+    --panel:#1C2A35;--panel-ink:#EEF1EC;--panel-muted:#9DAAB4;--copper:#E08A52;--alert:#F0624B;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0F171E;--surface:#16212A;--ink:#EAEEE9;--ink-2:#A7B3BC;--line:#2A3844;
+  --panel:#1C2A35;--panel-ink:#EEF1EC;--panel-muted:#9DAAB4;--copper:#E08A52;--alert:#F0624B;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);line-height:1.02;text-wrap:balance;margin:0;letter-spacing:.005em}
+h2{font-size:clamp(2rem,4.2vw,3rem);font-weight:800;text-transform:uppercase}
+h3{font-size:1.45rem;font-weight:700}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+:focus-visible{outline:3px solid var(--volt);outline-offset:2px}
+
+/* top strip + header */
+.strip{background:var(--panel);color:var(--panel-muted);font-family:var(--mono);font-size:.78rem}
+.strip .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px;padding-block:8px}
+.strip b{color:var(--volt);font-weight:500}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.mark{width:40px;height:40px;flex:none}
+.brand-name{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:.04em;line-height:1}
+.brand-name span{display:block;font-family:var(--mono);font-weight:400;font-size:.62rem;letter-spacing:.12em;color:var(--ink-2);margin-top:3px}
+nav.main{display:flex;gap:22px;font-weight:600;font-size:.93rem}
+nav.main a{text-decoration:none;color:var(--ink-2)}
+nav.main a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-weight:700;font-size:.95rem;text-decoration:none;border:0;border-radius:4px;padding:12px 18px;cursor:pointer;white-space:nowrap}
+.btn-volt{background:var(--volt);color:var(--volt-ink)}
+.btn-volt:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
+@media (max-width:860px){nav.main{display:none}}
+@media (max-width:420px){.head-call .num{display:none}}
+
+/* hero */
+.hero{background:var(--panel);color:var(--panel-ink);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .9fr;gap:48px;padding-block:64px 72px;align-items:center}
+.crumbs{font-family:var(--mono);font-size:.75rem;color:var(--panel-muted);margin-bottom:18px}
+.hero h1{font-size:clamp(2.8rem,6.4vw,5.1rem);font-weight:800;text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--volt)}
+.hero .lede{margin-top:20px;max-width:56ch;color:#C9D2D8;font-size:1.08rem}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero .btn-ghost{color:var(--panel-ink)}
+/* call card styled like a panel directory label */
+.callcard{background:#F7F4E8;color:#1B1600;border-radius:6px;padding:22px;box-shadow:0 20px 40px -18px rgba(0,0,0,.6);transform:rotate(-1.2deg)}
+.callcard .top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #1B1600;padding-bottom:8px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.callcard .live{display:inline-flex;align-items:center;gap:6px}
+.callcard .live i{width:8px;height:8px;border-radius:50%;background:#1E9E4A;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.callcard .live i{animation:none}}
+.callcard .big{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,5vw,3.2rem);letter-spacing:.02em;margin:14px 0 4px;user-select:all}
+.callcard p{font-size:.92rem;color:#4b4630}
+.callcard .row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.callcard .btn-volt{background:#1B1600;color:var(--volt)}
+.callcard .btn-ghost{border-color:#1B1600}
+.callcard dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:18px 0 0;padding-top:12px;border-top:1px dashed #b8b196;font-family:var(--mono);font-size:.78rem}
+.callcard dt{color:#7a7358}.callcard dd{margin:0}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:44px 52px}.callcard{transform:none}}
+
+/* trust strip */
+.trust{background:var(--volt);color:var(--volt-ink)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.trust div{padding:18px 16px;border-left:1.5px solid rgba(27,22,0,.25)}
+.trust div:first-child{border-left:0}
+.trust b{display:block;font-family:var(--display);font-size:1.6rem;font-weight:800;text-transform:uppercase;line-height:1}
+.trust span{font-size:.85rem}
+@media (max-width:720px){.trust .wrap{grid-template-columns:1fr 1fr}.trust div:nth-child(3){border-left:0}.trust div{border-top:1.5px solid rgba(27,22,0,.25)}.trust div:nth-child(-n+2){border-top:0}}
+
+section{padding-block:80px}
+.sec-head{display:grid;gap:12px;max-width:760px;margin-bottom:40px}
+.sec-head p{color:var(--ink-2);font-size:1.05rem}
+
+/* intro split */
+.intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.intro .body{display:grid;gap:18px;color:var(--ink-2);font-size:1.04rem}
+.intro .body strong{color:var(--ink)}
+@media (max-width:860px){.intro .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* why licensed */
+.why{background:var(--surface);border-block:1px solid var(--line)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.why-grid article{background:var(--surface);padding:28px 24px;display:grid;gap:10px;align-content:start}
+.why-grid svg{width:30px;height:30px;stroke:var(--copper);fill:none;stroke-width:1.8}
+.why-grid p{color:var(--ink-2);font-size:.96rem}
+@media (max-width:860px){.why-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.why-grid{grid-template-columns:1fr}}
+.risk{margin-top:32px;display:grid;grid-template-columns:auto 1fr;gap:18px 24px;align-items:start;border:1.5px solid var(--alert);border-radius:6px;padding:22px 24px}
+.risk h3{color:var(--alert);font-size:1.3rem}
+.risk ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px}
+.risk li{font-size:.88rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--ground)}
+.risk .note{grid-column:1/-1;font-size:.9rem;color:var(--ink-2)}
+@media (max-width:640px){.risk{grid-template-columns:1fr}}
+
+/* services as panel directory */
+.panel{background:var(--panel);color:var(--panel-ink);border-radius:8px;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.circuit{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:start;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:16px}
+.circuit .no{font-family:var(--mono);font-size:.8rem;color:var(--panel-muted);padding-top:3px}
+.circuit h3{font-size:1.3rem;letter-spacing:.01em}
+.circuit p{color:#BFC9D0;font-size:.9rem;margin-top:4px}
+.circuit .amp{font-family:var(--mono);font-size:.72rem;color:var(--volt-ink);background:var(--volt);padding:2px 7px;border-radius:3px;margin-top:3px}
+@media (max-width:760px){.panel{grid-template-columns:1fr}}
+
+/* residential / commercial / emergency */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tri article{display:grid;gap:14px;align-content:start;padding-top:18px;border-top:3px solid var(--ink)}
+.tri article.em{border-top-color:var(--alert)}
+.tri p{color:var(--ink-2);font-size:.96rem}
+.tri ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.94rem}
+.tri li::marker{color:var(--copper)}
+@media (max-width:860px){.tri{grid-template-columns:1fr}}
+
+/* emergency band */
+.emerg{background:var(--alert);color:#fff;padding-block:56px}
+.emerg .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center}
+.emerg h2{color:#fff}
+.emerg p{margin-top:12px;max-width:60ch;color:#FFE3DD}
+.emerg .num{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,5vw,3.4rem);user-select:all;line-height:1}
+.emerg .btn{background:#fff;color:#7A1709;margin-top:14px}
+@media (max-width:760px){.emerg .wrap{grid-template-columns:1fr}}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s}
+.steps li{list-style:none;padding:0 22px 0 0;display:grid;gap:10px;align-content:start;position:relative}
+.steps .n{font-family:var(--mono);font-size:.8rem;color:var(--copper);display:flex;align-items:center;gap:10px}
+.steps .n::after{content:"";flex:1;height:1.5px;background:var(--line)}
+.steps li:last-child .n::after{display:none}
+.steps p{color:var(--ink-2);font-size:.94rem}
+ol.steps{margin:0;padding:0}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;row-gap:32px}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* pricing */
+.pricing{background:var(--surface);border-block:1px solid var(--line)}
+.price-wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+td:last-child,th:last-child{text-align:right;white-space:nowrap;font-weight:700}
+.fine{font-size:.82rem;color:var(--ink-2);margin-top:12px}
+.compare{display:grid;gap:16px}
+.compare div{padding:18px 20px;border-radius:6px;background:var(--ground);border:1px solid var(--line)}
+.compare h3{font-size:1.2rem;margin-bottom:8px}
+.compare ul{margin:0;padding-left:18px;font-size:.92rem;display:grid;gap:4px;color:var(--ink-2)}
+.compare .pro h3{color:#1E7F43}
+.compare .diy h3{color:var(--alert)}
+:root[data-theme="dark"] .compare .pro h3{color:#5BCB86}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .compare .pro h3{color:#5BCB86}}
+@media (max-width:860px){.price-wrap{grid-template-columns:1fr}}
+
+/* areas */
+.areas ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.areas li{font-weight:600;font-size:.95rem;padding:8px 14px;border:1.5px solid var(--line);border-radius:4px;background:var(--surface)}
+.areas li.hq{border-color:var(--volt);background:var(--volt);color:var(--volt-ink)}
+
+/* checklist */
+.check{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.check article{display:grid;gap:8px;padding:22px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.check p{color:var(--ink-2);font-size:.95rem}
+@media (max-width:720px){.check{grid-template-columns:1fr}}
+
+/* contact */
+.contact{background:var(--panel);color:var(--panel-ink)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.contact .label{color:var(--volt)}
+.contact h2{margin-top:10px}
+.contact .info{display:grid;gap:18px;margin-top:24px}
+.contact .info div{display:grid;gap:2px}
+.contact .info small{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--panel-muted)}
+.contact .info strong{font-size:1.15rem}
+.contact .phone{font-family:var(--display);font-size:2.2rem;font-weight:800;user-select:all}
+.hours{font-family:var(--mono);font-size:.84rem;display:grid;grid-template-columns:auto 1fr;gap:3px 18px;font-variant-numeric:tabular-nums}
+form{background:var(--surface);color:var(--ink);border-radius:8px;padding:26px;display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+label{display:grid;gap:5px;font-size:.84rem;font-weight:600}
+input,select,textarea{font:inherit;font-size:.95rem;color:var(--ink);background:var(--ground);border:1.5px solid var(--line);border-radius:4px;padding:10px 12px;width:100%}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--copper)}
+.form-msg{font-size:.9rem;font-weight:600;color:#1E7F43}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+footer{background:#0C131A;color:#9DAAB4;font-size:.86rem;padding-block:40px 28px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#EEF1EC;margin:0 0 10px;font-weight:500}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+footer a{text-decoration:none}footer a:hover{color:#fff}
+footer .legal{grid-column:1/-1;border-top:1px solid #22303B;padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-family:var(--mono);font-size:.74rem}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr 1fr}}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:4px;font-size:.88rem;font-weight:600;z-index:50}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bolt" viewBox="0 0 40 40"><rect width="40" height="40" rx="6" fill="#FFC21A"/><path d="M22.5 5 10 22.5h8.5L16 35l14-18.5h-8.8L22.5 5Z" fill="#1B1600"/></symbol>
+</svg>
+
+<div class="strip"><div class="wrap">
+  <span>ECRA/ESA Licence # <b>[add licence number]</b></span>
+  <span>Toronto · Kitchener · Waterloo · Cambridge · <b>24/7 emergency line</b></span>
+</div></div>
+
+<header class="site"><div class="wrap">
+  <a class="brand" href="#top" aria-label="ISON Electric home">
+    <svg class="mark"><use href="#bolt"/></svg>
+    <div class="brand-name">ISON ELECTRIC<span>LICENSED ELECTRICAL CONTRACTOR</span></div>
+  </a>
+  <nav class="main" aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#why">Why licensed</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#areas">Service areas</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-volt head-call" href="tel:+14168884302" aria-label="Call 416-888-4302">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+    <span class="num">416-888-4302</span>
+  </a>
+</div></header>
+
+<main id="top">
+<section class="hero" style="padding-block:0"><div class="wrap">
+  <div>
+    <div class="crumbs">Home › Service Areas › Toronto &amp; Waterloo Region</div>
+    <h1>Licensed electricians for <em>Toronto, Kitchener, Waterloo &amp; Cambridge</em></h1>
+    <p class="lede">ISON Electric handles residential, commercial and emergency electrical work: panel upgrades, rewiring, EV chargers, lighting and inspections. Every job is permitted, inspected by the ESA and built to the Ontario Electrical Safety Code.</p>
+    <div class="ctas">
+      <a class="btn btn-volt" href="#contact">Get a free quote</a>
+      <a class="btn btn-ghost" href="#services">See our services</a>
+    </div>
+  </div>
+  <aside class="callcard" aria-label="Call ISON Electric">
+    <div class="top"><span>Circuit 01 · Service line</span><span class="live"><i></i>Answering now</span></div>
+    <div class="big">416-888-4302</div>
+    <p>Call or text for estimates, bookings and 24/7 electrical emergencies.</p>
+    <div class="row">
+      <a class="btn btn-volt" href="tel:+14168884302">Call now</a>
+      <button class="btn btn-ghost" type="button" data-copy="416-888-4302" id="copy-hero">Copy number</button>
+    </div>
+    <dl>
+      <dt>Office</dt><dd>Mon–Fri · 8:00–6:00</dd>
+      <dt>Emergency</dt><dd>24 hours · 7 days</dd>
+      <dt>Estimates</dt><dd>Free, written, no obligation</dd>
+    </dl>
+  </aside>
+</div></section>
+
+<div class="trust"><div class="wrap">
+  <div><b>ESA Licensed</b><span>Permits &amp; inspections included</span></div>
+  <div><b>24/7</b><span>Emergency response</span></div>
+  <div><b>Fully insured</b><span>Liability &amp; WSIB coverage</span></div>
+  <div><b>Warranty</b><span>On workmanship &amp; parts</span></div>
+</div></div>
+
+<section class="intro"><div class="wrap">
+  <div class="sec-head" style="margin:0">
+    <span class="label">Your local electrical contractor</span>
+    <h2>Safe, code-compliant work, done right the first time</h2>
+  </div>
+  <div class="body">
+    <p><strong>ISON Electric is a licensed electrical contractor serving homeowners, landlords and businesses across Toronto, the GTA and Waterloo Region, including Kitchener, Waterloo and Cambridge.</strong> We cover everything from a single outlet to a full home rewire or a commercial fit-out.</p>
+    <p>A Master Electrician leads every project. We pull the permit, coordinate the ESA inspection and hand you the paperwork when the job is done. Your insurer, your buyer and your family can count on the work.</p>
+    <p>We use CSA-approved materials from established North American suppliers. You get a clear written quote before work begins, and we leave the site clean.</p>
+  </div>
+</div></section>
+
+<section class="why" id="why"><div class="wrap">
+  <div class="sec-head">
+    <span class="label">Why hire a licensed electrician</span>
+    <h2>What a licence actually protects</h2>
+    <p>In Ontario, only a Licensed Electrical Contractor can legally perform electrical work for hire. Here's what that means for your property.</p>
+  </div>
+  <div class="why-grid">
+    <article><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></svg><h3>Code compliance</h3><p>All work follows the Ontario Electrical Safety Code, so installations and repairs meet provincial safety standards.</p></article>
+    <article><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><h3>Permits &amp; inspections</h3><p>We file the ESA notification and book the inspection. That avoids problems at resale or when you make an insurance claim.</p></article>
+    <article><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg><h3>Insurance stays valid</h3><p>Unlicensed work can void your home insurance. We give you documented proof that the work is compliant.</p></article>
+    <article><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><h3>Lower fire &amp; shock risk</h3><p>Correct wire sizing, breakers and grounding keep your system from overheating and tripping.</p></article>
+    <article><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M10 21v-6h4v6"/></svg><h3>Property value</h3><p>Modern panels and copper wiring appeal to buyers and pass home inspections.</p></article>
+    <article><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Warranty backed</h3><p>Our workmanship is under warranty. If something isn't right, we come back and fix it.</p></article>
+  </div>
+  <div class="risk">
+    <h3>Risks of hiring unlicensed</h3>
+    <ul>
+      <li>Voided insurance</li><li>Fire &amp; shock hazards</li><li>Failed home inspections</li><li>ESA fines</li><li>Costly rework</li><li>No warranty</li>
+    </ul>
+    <p class="note">You can check any contractor's licence on the ESA's public <a href="https://findacontractor.esasafe.com/Home/ContractorSearch" target="_blank" rel="noopener">Contractor Look-Up</a>.</p>
+  </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <div class="sec-head">
+    <span class="label">Panel directory · Our services</span>
+    <h2>Electrical services, circuit by circuit</h2>
+    <p>From troubleshooting a flickering light to installing a 200A service, one licensed team handles it.</p>
+  </div>
+  <div class="panel">
+    <div class="circuit"><span class="no">01</span><div><h3>Panel upgrades</h3><p>100A to 200A service upgrades, panel replacements and subpanels for additions, garages and suites.</p></div><span class="amp">200A</span></div>
+    <div class="circuit"><span class="no">02</span><div><h3>EV charger installation</h3><p>Level 2 home and workplace chargers, including a load calculation and a dedicated circuit.</p></div><span class="amp">40–60A</span></div>
+    <div class="circuit"><span class="no">03</span><div><h3>Rewiring &amp; knob-and-tube</h3><p>Full or partial rewires, knob-and-tube removal and aluminum-to-copper remediation.</p></div><span class="amp">15/20A</span></div>
+    <div class="circuit"><span class="no">04</span><div><h3>Lighting &amp; pot lights</h3><p>LED pot lights, chandeliers, dimmers, landscape and security lighting.</p></div><span class="amp">15A</span></div>
+    <div class="circuit"><span class="no">05</span><div><h3>Electrical inspections</h3><p>Pre-purchase, insurance and safety inspections, with a written report and recommendations.</p></div><span class="amp">ESA</span></div>
+    <div class="circuit"><span class="no">06</span><div><h3>Outlets, GFCI &amp; USB</h3><p>New circuits, GFCI and AFCI protection, USB and exterior weatherproof outlets.</p></div><span class="amp">20A</span></div>
+    <div class="circuit"><span class="no">07</span><div><h3>Smoke &amp; CO alarms</h3><p>Hard-wired, interconnected smoke and carbon monoxide alarms that meet the Ontario Fire Code.</p></div><span class="amp">15A</span></div>
+    <div class="circuit"><span class="no">08</span><div><h3>Hot tubs &amp; generators</h3><p>Hot tub disconnects and wiring, generator transfer switches and standby power.</p></div><span class="amp">50A</span></div>
+    <div class="circuit"><span class="no">09</span><div><h3>Smart home &amp; CCTV</h3><p>Smart switches, camera systems, doorbells and structured wiring.</p></div><span class="amp">LV</span></div>
+    <div class="circuit"><span class="no">10</span><div><h3>Data &amp; network cabling</h3><p>Cat6 runs, patch panels and Wi-Fi access points for homes and offices.</p></div><span class="amp">LV</span></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="tri">
+    <article>
+      <span class="label">Residential</span>
+      <h3>For homes &amp; condos</h3>
+      <p>Renovations, basements, additions and upgrades for older Toronto homes and new builds.</p>
+      <ul><li>Panel &amp; service upgrades</li><li>Basement &amp; secondary-suite wiring</li><li>Kitchen &amp; bathroom circuits</li><li>EV chargers &amp; hot tubs</li></ul>
+    </article>
+    <article>
+      <span class="label">Commercial</span>
+      <h3>For offices, retail &amp; industrial</h3>
+      <p>Fit-outs, maintenance and retrofits, scheduled around your business hours.</p>
+      <ul><li>Tenant fit-outs &amp; new construction</li><li>LED retrofits</li><li>Emergency &amp; exit lighting</li><li>Preventive maintenance programs</li></ul>
+    </article>
+    <article class="em">
+      <span class="label" style="color:var(--alert)">Emergency</span>
+      <h3>When the power goes wrong</h3>
+      <p>A licensed electrician on call around the clock to make things safe and restore power.</p>
+      <ul><li>Power loss &amp; tripping breakers</li><li>Burning smells, sparking outlets</li><li>Storm &amp; water damage</li><li>Temporary power</li></ul>
+    </article>
+  </div>
+</div></section>
+
+<div class="emerg"><div class="wrap">
+  <div>
+    <span class="label" style="color:#FFE3DD">24-hour emergency electricians</span>
+    <h2>Sparks, smoke or no power? Call us now.</h2>
+    <p>If you smell burning or see scorched outlets, switch off the main breaker if it's safe to do so. Then call us. For fire or injury, call 911 first.</p>
+  </div>
+  <div>
+    <div class="num">416-888-4302</div>
+    <a class="btn" href="tel:+14168884302">Call the emergency line</a>
+  </div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="sec-head">
+    <span class="label">How a job runs</span>
+    <h2>Our process</h2>
+  </div>
+  <ol class="steps">
+    <li><span class="n">STEP 1</span><h3>Assessment</h3><p>We look at your system on site and give you a free written estimate.</p></li>
+    <li><span class="n">STEP 2</span><h3>Permit &amp; plan</h3><p>We file the ESA notification and schedule the work around you.</p></li>
+    <li><span class="n">STEP 3</span><h3>Installation</h3><p>Licensed electricians do the work to code, with minimal disruption.</p></li>
+    <li><span class="n">STEP 4</span><h3>Test &amp; certify</h3><p>We test everything, coordinate the ESA inspection and give you the certificate.</p></li>
+  </ol>
+</div></section>
+
+<section class="pricing" id="pricing"><div class="wrap">
+  <div class="sec-head">
+    <span class="label">Transparent pricing</span>
+    <h2>Typical project costs</h2>
+    <p>Every quote is written and itemized before work starts, with no hidden fees.</p>
+  </div>
+  <div class="price-wrap">
+    <div>
+      <div class="tbl"><table>
+        <thead><tr><th>Service</th><th>Typical range</th></tr></thead>
+        <tbody>
+          <tr><td>Service call &amp; diagnosis</td><td>$150 – $300</td></tr>
+          <tr><td>Panel upgrade (100A → 200A)</td><td>$1,800 – $3,500</td></tr>
+          <tr><td>Level 2 EV charger install</td><td>$900 – $2,200</td></tr>
+          <tr><td>LED pot light, per fixture</td><td>$150 – $300</td></tr>
+          <tr><td>Complete house rewire</td><td>$7,500 – $15,000+</td></tr>
+        </tbody>
+      </table></div>
+      <p class="fine">Prices vary with project scope, materials, access and ESA permit fees. Call for an exact quote.</p>
+      <a class="btn btn-volt" href="#contact" style="margin-top:18px">Get a detailed quote</a>
+    </div>
+    <div class="compare">
+      <div class="pro"><h3>✓ Licensed professional</h3><ul><li>Code compliance</li><li>Insurance coverage maintained</li><li>ESA certificate provided</li><li>Warranty on workmanship</li></ul></div>
+      <div class="diy"><h3>✕ DIY or unlicensed</h3><ul><li>ESA fines for unpermitted work</li><li>Insurance claims may be denied</li><li>Shock &amp; fire hazards</li><li>Expensive rework to fix</li></ul></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="areas" class="areas"><div class="wrap">
+  <div class="sec-head">
+    <span class="label">Service areas</span>
+    <h2>Serving Toronto, Kitchener, Waterloo &amp; Cambridge</h2>
+    <p>Licensed electricians dispatched across Toronto, the GTA and Waterloo Region.</p>
+  </div>
+  <ul>
+    <li class="hq">Toronto</li><li class="hq">Kitchener</li><li class="hq">Waterloo</li><li class="hq">Cambridge</li><li>North York</li><li>Scarborough</li><li>Etobicoke</li><li>East York</li><li>Mississauga</li><li>Brampton</li><li>Vaughan</li><li>Woodbridge</li><li>Richmond Hill</li><li>Markham</li><li>Thornhill</li><li>Pickering</li><li>Ajax</li><li>Whitby</li><li>Oshawa</li><li>Oakville</li><li>Milton</li><li>Burlington</li><li>Newmarket</li><li>Aurora</li>
+  </ul>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-head">
+    <span class="label">Hiring guide</span>
+    <h2>Choosing the right electrical contractor</h2>
+  </div>
+  <div class="check">
+    <article><h3>Verify the ESA licence</h3><p>Ask for the contractor's ECRA/ESA licence number and check it on the ESA's public registry.</p></article>
+    <article><h3>Confirm insurance</h3><p>Ask for proof of liability insurance and WSIB coverage before any work begins.</p></article>
+    <article><h3>Get it in writing</h3><p>Look for an itemized quote, a clear scope and a stated warranty, not a vague lump sum.</p></article>
+    <article><h3>Watch for red flags</h3><p>Pressure to decide immediately, offers to skip the permit, or a quote far below the others.</p></article>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <div>
+    <span class="label">Contact ISON Electric</span>
+    <h2>Book an electrician or request a free estimate</h2>
+    <div class="info">
+      <div><small>Phone · call or text</small><span class="phone">416-888-4302</span><button class="btn btn-volt" type="button" data-copy="416-888-4302" id="copy-contact" style="justify-self:start;margin-top:6px">Copy number</button></div>
+      <div><small>Service area</small><strong>Toronto, Kitchener, Waterloo, Cambridge &amp; the GTA</strong></div>
+      <div><small>Hours</small>
+        <div class="hours"><span>Mon–Fri</span><span>8:00 am – 6:00 pm</span><span>Sat</span><span>9:00 am – 2:00 pm</span><span>Sun</span><span>Emergency calls only</span><span>Emergency</span><span>24/7</span></div>
+      </div>
+    </div>
+  </div>
+  <form id="quote-form" novalidate>
+    <h3>Request a free quote</h3>
+    <div class="two">
+      <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+      <label for="f-phone">Phone<input id="f-phone" name="phone" type="tel" autocomplete="tel" required></label>
+    </div>
+    <div class="two">
+      <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email"></label>
+      <label for="f-city">City<input id="f-city" name="city" placeholder="e.g. North York"></label>
+    </div>
+    <label for="f-service">Service needed
+      <select id="f-service" name="service">
+        <option>Panel upgrade</option><option>EV charger</option><option>Rewiring</option><option>Lighting / pot lights</option><option>Inspection</option><option>Outlets / circuits</option><option>Emergency repair</option><option>Commercial project</option><option>Other</option>
+      </select>
+    </label>
+    <label for="f-msg">Project details<textarea id="f-msg" name="message" placeholder="Tell us what you need, e.g. a 200A upgrade for a 1950s bungalow"></textarea></label>
+    <button class="btn btn-volt" type="submit" id="f-submit">Request quote</button>
+    <p class="form-msg" id="form-msg" hidden></p>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div>
+    <a class="brand" href="#top" style="color:#EEF1EC"><svg class="mark"><use href="#bolt"/></svg><div class="brand-name">ISON ELECTRIC</div></a>
+    <p style="margin-top:12px;max-width:34ch">Licensed residential, commercial and emergency electricians serving Toronto, Kitchener, Waterloo, Cambridge and the GTA.</p>
+  </div>
+  <div><h4>Services</h4><ul><li><a href="#services">Panel upgrades</a></li><li><a href="#services">EV chargers</a></li><li><a href="#services">Rewiring</a></li><li><a href="#services">Lighting</a></li><li><a href="#services">Inspections</a></li></ul></div>
+  <div><h4>Company</h4><ul><li><a href="#why">Why licensed</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#areas">Service areas</a></li><li><a href="#contact">Contact</a></li></ul></div>
+  <div><h4>Contact</h4><ul><li>416-888-4302</li><li>Toronto · Kitchener · Waterloo · Cambridge</li><li>24/7 emergency service</li></ul></div>
+  <div class="legal"><span>© 2026 ISON Electric. All rights reserved.</span><span>ECRA/ESA Licence # [add licence number]</span></div>
+</div></footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+  var toast=document.getElementById('toast'),t;
+  function show(msg){toast.textContent=msg;toast.hidden=false;clearTimeout(t);t=setTimeout(function(){toast.hidden=true},2200);}
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.getAttribute('data-copy');
+      try{
+        navigator.clipboard.writeText(v).then(function(){show('Number copied: '+v)},function(){show('Call '+v)});
+      }catch(e){show('Call '+v)}
+    });
+  });
+  var f=document.getElementById('quote-form'),m=document.getElementById('form-msg');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('f-name').value.trim(),p=document.getElementById('f-phone').value.trim();
+    m.hidden=false;
+    if(!n||!p){m.style.color='var(--alert)';m.textContent='Please add your name and phone number so we can reach you.';return;}
+    m.style.color='';
+    m.textContent='Thanks, '+n+'. Your request is ready. For the fastest response, call or text 416-888-4302.';
+  });
+})();
+</script>
+</body>
+</html>
